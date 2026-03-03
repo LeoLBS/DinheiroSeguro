@@ -1,52 +1,40 @@
 package br.com.leperber.view;
 
-import br.com.leperber.controller.ContaController;
-
 import java.util.Scanner;
 
 public final class MenuInicial {
 
     private Scanner lerDados = new Scanner(System.in);
-    private ContaController contaController = new ContaController();
-    private ContaView contaView = new ContaView();
+    private MenuCategoriaTransacao menuCategoriaTransacao = new MenuCategoriaTransacao();
+    private MenuConta menuConta = new MenuConta();
 
-    public void iniciar(){
-        boolean continuarTela = true;
-        while(continuarTela){
+    public void iniciar() {
+
+        boolean continuaPrograma = true;
+
+        while (continuaPrograma) {
             System.out.println("PROGRAMA DINHEIRO SEGURO");
+
             System.out.println("""
-                Para começar escolha uma opcao:
-                    0 - Sair;
-                    Conta: [
-                        1 - Cadastrar uma conta;
-                        2 - Listar todas as contas;
-                        3 - Pesquisar uma conta;
-                        4 - Alterar uma conta;
-                        5 - Remover uma conta;
-                    ]
-                """);
-            int opcao = lerDados.nextInt();
-            switch (opcao){
-                case 0:
-                    continuarTela = false;
-                    break;
+                    Escolha uma opcao do menu:
+                        [1] Menu Conta
+                        [2] Menu Categoria Transacao
+                        Sair[0]
+                    """);
+            int opcaoEscolha = lerDados.nextInt();
+
+            switch (opcaoEscolha) {
                 case 1:
-                    contaView.cadastrarConta();
+                    menuConta.iniciarMenu();
                     break;
                 case 2:
-                    contaView.mostrarContas();
+                    menuCategoriaTransacao.iniciarMenu();
                     break;
-                case 3:
-                    contaView.buscarCodigoConta();
-                    break;
-                case 4:
-                    contaView.editarConta();
-                    break;
-                case 5:
-                    contaView.deletarConta();
+                case 0:
+                    continuaPrograma = false;
                     break;
                 default:
-                    System.out.println("Não foi encontrada essa opção!");
+                    System.out.println("Nao foi encontra a opcao!");
                     break;
             }
         }
